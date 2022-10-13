@@ -10,7 +10,11 @@ render json: review
         render json: review 
     end
 
-
+    def create
+        review =Review.create(review_params)
+        render json: review, status: :created
+        
+            end
 
 
     private
