@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-    # before_action  :authorize
-    # skip_before_action :authorize, only:  [:index]
+    before_action  :authorize
+    skip_before_action :authorize, only:  [:index]
    
      
     def show
@@ -41,7 +41,7 @@ params.permit(:title,  :image,  :author,  :description,  :price)
         render json: {error: "Book not found"},  status: :not_found
     end
 
-#     def authorize
-# return render json: {error:  "Not authorized"}, status:  :unauthorized
-#     end
+    def authorize
+return render json: {error:  "Not authorized"}, status:  :unauthorized
+    end
 end
