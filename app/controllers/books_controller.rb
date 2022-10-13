@@ -21,6 +21,16 @@ book = Book.find(params[:id])
 book.destroy
 head :no_content
     end
+    def update
+        book = Book.find_by(id:  params[:id])
+        if book
+            book.update(book_params)
+            render json: book
+            else
+                render_not_found_response
+        end
+
+    end
 
     private
 
